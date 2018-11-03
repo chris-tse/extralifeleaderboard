@@ -5,22 +5,37 @@ import Leaderboard from './Leaderboard';
 class App extends Component {
   constructor() {
     super();
+    let params = new URLSearchParams(document.location.search.substring(1));
+    let teamID = params.get('team') || 40073;
     this.state = {
-      users: []
+      users: [],
+      teamID,
+      team: {}
     }
   }
   
   async componentWillMount() {
-    let users = await axios.get('https://www.extra-life.org/api/teams/40073/participants');
+    let users = await axios.get(`https://www.extra-life.org/api/teams/${this.state.teamID}/participants`);
     console.log('Initial get');
+    console.log(users);
     this.setState({users: users.data});
+    let team = await axios.get(`https://www.extra-life.org/api/teams/${this.state.teamID}`);
+    console.log('Initial get team');
+    console.log(team);
+    team.data.sumDonations = team.data.sumDonations.toFixed(2)
+    this.setState({team: team.data});
   }
   
   async componentDidMount() {
     this.interval = setInterval(async () => {
-      let users = await axios.get('https://www.extra-life.org/api/teams/40073/participants');
+      let users = await axios.get(`https://www.extra-life.org/api/teams/${this.state.teamID}/participants`);
       console.log('Update users');
       this.setState({users: users.data});
+      let team = await axios.get(`https://www.extra-life.org/api/teams/${this.state.teamID}`);
+      console.log('Initial get team');
+      console.log(team);
+      team.data.sumDonations = team.data.sumDonations.toFixed(2)
+      this.setState({team: team.data});
     }, 15000);
   }
   
@@ -30,7 +45,7 @@ class App extends Component {
   
   render() {
     return (
-      <Leaderboard users={this.state.users}/>
+      <Leaderboard users={this.state.users} team={this.state.team}/>
     );
   }
 }
