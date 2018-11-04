@@ -97,8 +97,8 @@ class App extends Component {
           return user;
         }
         return (
-          user.displayName.toLowerCase().includes(filterString) ||
-          String(user.sumDonations).includes(filterString)
+          user.displayName.toLowerCase().includes(filterString.toLowerCase()) ||
+          String(user.sumDonations).includes(filterString.toLowerCase())
         );
       })
       .sort((a, b) => (a.sumDonations <= b.sumDonations ? 1 : -1));
