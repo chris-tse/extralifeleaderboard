@@ -5,7 +5,7 @@ class UserRow extends Component {
         return (
             <tr>
                 <td>{this.props.user.displayName}</td>
-                <td>{this.props.user.sumDonations}</td>
+                <td>${this.props.user.sumDonations}</td>
             </tr>
         );
     }
