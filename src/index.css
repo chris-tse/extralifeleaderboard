@@ -12,3 +12,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+body {
+  background-color: #666666;
+  font-size: 20px;
+}
+
+.orbitron {
+  font-family: 'Orbitron', monospace;
+  color: #dddddd;
+}
+
+.press-start-2p {
+  font-family: 'Press Start 2P', monospace;
+  color: white;
+}
+
+hr {
+  border: 0px; 
+  height: 2px; 
+  background-color: white
+}
