@@ -23,8 +23,8 @@ class Leaderboard extends Component {
                 <table className="table table-dark">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Donations</th>
+                            <th className="press-start-2p">Name</th>
+                            <th className="press-start-2p">Donations</th>
                         </tr>
                     </thead>
                     <tbody>{rows}</tbody>
