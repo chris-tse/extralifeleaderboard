@@ -6,7 +6,7 @@ class Leaderboard extends Component {
         const rows = [];
         
         users
-            .sort((a, b) => a.sumDonations <= b.sumDonations ? 1 : -1)
+            .sort((a, b) => parseFloat(a.sumDonations) <= parseFloat(b.sumDonations) ? 1 : -1)
             .map((user, index) => {
                 // if (user.displayName.indexOf(filterText) === -1) {   return; }
                 rows.push(<UserRow user={user} key={index}/>);
