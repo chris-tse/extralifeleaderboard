@@ -17,7 +17,9 @@ class App extends Component {
   async componentWillMount() {
     let users = await axios.get(`https://www.extra-life.org/api/teams/${this.state.teamID}/participants`);
     console.log('Initial get');
-    console.log(users);
+    for (let user of users.data) {
+      user.sumDonations = user.sumDonations.toFixed(2);
+    }
     this.setState({users: users.data});
     let team = await axios.get(`https://www.extra-life.org/api/teams/${this.state.teamID}`);
     console.log('Initial get team');
@@ -30,6 +32,9 @@ class App extends Component {
     this.interval = setInterval(async () => {
       let users = await axios.get(`https://www.extra-life.org/api/teams/${this.state.teamID}/participants`);
       console.log('Update users');
+      for (let user of users.data) {
+        user.sumDonations = user.sumDonations.toFixed(2);
+      }
       this.setState({users: users.data});
       let team = await axios.get(`https://www.extra-life.org/api/teams/${this.state.teamID}`);
       console.log('Initial get team');
