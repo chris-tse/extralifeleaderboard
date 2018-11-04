@@ -1,29 +1,26 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { Table } from 'semantic-ui-react';
 import UserRow from './UserRow';
 class Leaderboard extends Component {
-    render() {
-        let users = this.props.users;
-        const rows = [];
-        
-        users
-            .sort((a, b) => a.sumDonations <= b.sumDonations ? 1 : -1)
-            .map((user, index) => {
-                // if (user.displayName.indexOf(filterText) === -1) {   return; }
-                rows.push(<UserRow user={user} key={index}/>);
-            });
-            
-        return (
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Donations</th>
-                    </tr>
-                </thead>
-                <tbody>{rows}</tbody>
-            </table>
-        );
-    }
+  render() {
+    const { users } = this.props;
+
+    console.log('props', this.props);
+    return (
+      <Table celled>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell>Donations</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {users &&
+            users.map((user, index) => <UserRow user={user} key={index} />)}
+        </Table.Body>
+      </Table>
+    );
+  }
 }
 
 export default Leaderboard;
